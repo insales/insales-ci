@@ -8,7 +8,7 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="http://github.com/insales/insales-ci.git"
 LABEL "homepage"="http://github.com/insales/insales-ci.git"
 
-LABEL "maintainer"="Sergey Miroshnichenko <sergey.miroshnichenko@insales.ru>"
+LABEL "maintainer"="Noc <noc@insales.ru>"
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -26,8 +26,8 @@ RUN apt -y update && apt install -y locales \
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
     && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt update \
-    && apt install -y postgresql-9.6 postgresql-client-9.6 postgresql-contrib-9.6 \
-       postgresql-server-dev-9.6 postgresql-client-common postgresql-common        
+    && apt install -y postgresql-10.14 postgresql-client-10.14 postgresql-contrib-10.14 \
+       postgresql-server-dev-10.14 postgresql-client-common postgresql-common
 
 RUN curl -sSL https://get.rvm.io | bash -s stable \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
@@ -37,9 +37,9 @@ RUN curl -sSL https://get.rvm.io | bash -s stable \
     && apt install -y nodejs yarn
 
 RUN /bin/bash -l -c ". /etc/profile.d/rvm.sh \
-    && rvm install 2.3.7 \
-    && rvm use 2.3.7 --default \
-    && ruby -v && gem install bundler"
+    && rvm install 2.3.8 \
+    && rvm use 2.3.8 --default \
+    && ruby -v && gem install bundler -v 1.17.3"
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
