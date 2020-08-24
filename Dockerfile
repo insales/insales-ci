@@ -26,8 +26,8 @@ RUN apt -y update && apt install -y locales \
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
     && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt update \
-    && apt install -y postgresql-10.14 postgresql-client-10.14 postgresql-contrib-10.14 \
-       postgresql-server-dev-10.14 postgresql-client-common postgresql-common
+    && apt install -y postgresql-10 postgresql-client-10 postgresql-contrib-10 \
+       postgresql-server-dev-10 postgresql-client-common postgresql-common
 
 RUN curl -sSL https://get.rvm.io | bash -s stable \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
