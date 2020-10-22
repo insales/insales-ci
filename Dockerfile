@@ -34,10 +34,5 @@ RUN curl -sSL https://get.rvm.io | bash -s stable \
     && apt update \
     && apt install -y nodejs yarn
 
-RUN /bin/bash -l -c ". /etc/profile.d/rvm.sh \
-    && rvm install 2.3.7 \
-    && rvm use 2.3.7 --default \
-    && ruby -v && gem install bundler"
-
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
